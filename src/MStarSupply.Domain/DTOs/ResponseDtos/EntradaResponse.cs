@@ -18,7 +18,5 @@ namespace MStarSupply.Domain.DTOs.ResponseDtos
         public int NumeroRegistro { get; set; }
 
         public Guid MercadoriaId { get; set; }
-
-        public Mercadoria Mercadoria { get; private set; }
     }
 }
