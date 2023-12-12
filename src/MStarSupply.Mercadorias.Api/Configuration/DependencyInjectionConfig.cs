@@ -1,7 +1,9 @@
 ﻿using MStarSupply.Application.Services;
 using MStarSupply.Data.Context;
 using MStarSupply.Data.Repositories;
+using MStarSupply.Data.Repositories.DapperRepositories;
 using MStarSupply.Domain.Interfaces.Repositories;
+using MStarSupply.Domain.Interfaces.Repositories.DapperRepositories;
 using MStarSupply.Domain.Interfaces.Services;
 
 namespace MStarSupply.Mercadorias.Api.Configuration
@@ -12,6 +14,7 @@ namespace MStarSupply.Mercadorias.Api.Configuration
         {
             // Repository
             services.AddScoped<IMercadoriaRepository, MercadoriaRepository>();
+            services.AddScoped<IMercadoriaQueriesRepository, MercadoriaQueriesRepository>();
 
             //AppServices
             services.AddScoped<IMercadoriaAppServices, MercadoriaAppServices>();

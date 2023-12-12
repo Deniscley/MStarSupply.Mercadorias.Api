@@ -1,6 +1,7 @@
 ﻿using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories;
+using MStarSupply.Domain.Interfaces.Repositories.DapperRepositories;
 using MStarSupply.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,11 @@ namespace MStarSupply.Application.Services
     public class MercadoriaAppServices : IMercadoriaAppServices
     {
         private readonly IMercadoriaRepository _mercadoriaRepository;
-        public MercadoriaAppServices(IMercadoriaRepository mercadoriaRepository)
+        private readonly IMercadoriaQueriesRepository _mercadoriaQueriesRepository;
+        public MercadoriaAppServices(IMercadoriaRepository mercadoriaRepository, IMercadoriaQueriesRepository mercadoriaQueriesRepository)
         {
             _mercadoriaRepository = mercadoriaRepository;
+            _mercadoriaQueriesRepository = mercadoriaQueriesRepository;
         }
 
         public Task InserirMercadoria(Mercadoria mercadoria)
@@ -45,14 +48,14 @@ namespace MStarSupply.Application.Services
 
         public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas()
         {
-            var response = await _mercadoriaRepository.ObterTodasEntradas();
+            var response = await _mercadoriaQueriesRepository.ObterTodasEntradas();
 
             return response;
         }
 
         public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas()
         {
-            var response = await _mercadoriaRepository.ObterTodasSaidas();
+            var response = await _mercadoriaQueriesRepository.ObterTodasSaidas();
 
             return response;
         }
