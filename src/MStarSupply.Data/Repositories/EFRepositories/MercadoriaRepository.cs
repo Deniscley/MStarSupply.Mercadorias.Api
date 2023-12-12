@@ -46,19 +46,5 @@ namespace MStarSupply.Data.Repositories
             var mercadoriasResponse = _mapper.Map<IEnumerable<MercadoriaResponse>>(response);
             return mercadoriasResponse;
         }
-
-        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas()
-        {
-            var response = (await _context.Entradas.AsNoTracking().ToListAsync()).AsEnumerable();
-            var entradasResponse = _mapper.Map<IEnumerable<EntradaResponse>>(response);
-            return entradasResponse;
-        }
-
-        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas()
-        {
-            var response = (await _context.Saidas.AsNoTracking().ToListAsync()).AsEnumerable();
-            var saidasResponse = _mapper.Map<IEnumerable<SaidaResponse>>(response);
-            return saidasResponse;
-        }
     }
 }

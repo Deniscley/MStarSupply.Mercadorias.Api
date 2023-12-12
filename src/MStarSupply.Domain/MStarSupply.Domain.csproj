@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MStarSupply.Core\MStarSupply.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\RequestDtos\" />
-  </ItemGroup>
-
 </Project>

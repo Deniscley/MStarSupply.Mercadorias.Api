@@ -5,33 +5,32 @@ using MStarSupply.Domain.Interfaces.Services;
 
 namespace MStarSupply.Mercadorias.Api.Controllers
 {
-    [Route("api/mercadoria")]
+    [Route("api/saida")]
     [ApiController]
-    public class MercadoriaController : Controller
+    public class SaidaController : Controller
     {
         private readonly IMercadoriaAppServices _mercadoriaAppServices;
         private readonly IMercadoriaRepository mercadoriaRepository;
-        public MercadoriaController(
+        public SaidaController(
             IMercadoriaAppServices mercadoriaAppServices
         )
         {
             _mercadoriaAppServices = mercadoriaAppServices;
         }
 
-
-        [HttpGet("obter-todas-mercadorias")]
-        public async Task<IActionResult> ObterTodasMercadorias()
+        [HttpGet("obter-todas-saidas")]
+        public async Task<IActionResult> ObterTodasSaidas()
         {
-            return Ok(await _mercadoriaAppServices.ObterTodasMercadorias());
+            return Ok(await _mercadoriaAppServices.ObterTodasSaidas());
         }
 
-        [HttpPost("inserir-mercadoria")]
-        public async Task<IActionResult> InserirMercadoria(Mercadoria mercadoria)
+        [HttpPost("inserir-saida")]
+        public async Task<IActionResult> InserirSaida(Saida saida)
         {
-            if (mercadoria == null)
+            if (saida == null)
                 return BadRequest();
 
-            await _mercadoriaAppServices.InserirMercadoria(mercadoria);
+            await _mercadoriaAppServices.InserirSaida(saida);
 
             return Created("Created", true);
         }

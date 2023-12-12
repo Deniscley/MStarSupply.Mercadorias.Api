@@ -38,6 +38,7 @@ namespace MStarSupply.Domain.Entities
             Validations.ValidateData(Data, "O campo data não pode estar vazio");
             Validations.ValidateIfEmpty(Local, "O campo local do cliente não pode estar vazio");
             Validations.ValidateIfEmpty(Quantidade, "O campo quantidade não pode estar vazio");
+            Validations.ValidateIfNull(MercadoriaId, "O campo mercadoria não pode estar vazio");
         }
     }
 }

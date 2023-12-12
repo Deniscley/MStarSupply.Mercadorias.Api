@@ -80,6 +80,14 @@ namespace MStarSupply.Core.Validacoes
             }
         }
 
+        public static void ValidateIfNull(Guid id, string mensagem)
+        {
+            if (id.Equals(null))
+            {
+                throw new DomainException(mensagem);
+            }
+        }
+
         // Validação condicional
         public static void ValidateMinimumMaximum(double valor, double minimo, double maximo, string mensagem)
         {
