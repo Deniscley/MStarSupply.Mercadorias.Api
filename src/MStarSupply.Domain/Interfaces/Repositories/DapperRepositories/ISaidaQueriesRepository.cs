@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace MStarSupply.Domain.Interfaces.Repositories.DapperRepositories
 {
-    public interface IMercadoriaQueriesRepository
+    public interface ISaidaQueriesRepository
     {
-        Task<IEnumerable<EntradaResponse>> ObterTodasEntradas();
-
         Task<IEnumerable<SaidaResponse>> ObterTodasSaidas();
     }
 }

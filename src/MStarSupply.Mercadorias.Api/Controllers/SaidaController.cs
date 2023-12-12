@@ -9,19 +9,18 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     [ApiController]
     public class SaidaController : Controller
     {
-        private readonly IMercadoriaAppServices _mercadoriaAppServices;
-        private readonly IMercadoriaRepository mercadoriaRepository;
+        private readonly ISaidaAppServices _saidaAppServices;
         public SaidaController(
-            IMercadoriaAppServices mercadoriaAppServices
+            ISaidaAppServices saidaAppServices
         )
         {
-            _mercadoriaAppServices = mercadoriaAppServices;
+            _saidaAppServices = saidaAppServices;
         }
 
         [HttpGet("obter-todas-saidas")]
         public async Task<IActionResult> ObterTodasSaidas()
         {
-            return Ok(await _mercadoriaAppServices.ObterTodasSaidas());
+            return Ok(await _saidaAppServices.ObterTodasSaidas());
         }
 
         [HttpPost("inserir-saida")]
@@ -30,7 +29,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             if (saida == null)
                 return BadRequest();
 
-            await _mercadoriaAppServices.InserirSaida(saida);
+            await _saidaAppServices.InserirSaida(saida);
 
             return Created("Created", true);
         }

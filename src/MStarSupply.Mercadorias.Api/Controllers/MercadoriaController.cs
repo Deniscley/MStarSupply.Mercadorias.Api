@@ -10,7 +10,6 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     public class MercadoriaController : Controller
     {
         private readonly IMercadoriaAppServices _mercadoriaAppServices;
-        private readonly IMercadoriaRepository mercadoriaRepository;
         public MercadoriaController(
             IMercadoriaAppServices mercadoriaAppServices
         )

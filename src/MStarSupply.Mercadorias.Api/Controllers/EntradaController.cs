@@ -9,19 +9,18 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     [ApiController]
     public class EntradaController : Controller
     {
-        private readonly IMercadoriaAppServices _mercadoriaAppServices;
-        private readonly IMercadoriaRepository mercadoriaRepository;
+        private readonly IEntradaAppServices _entradaAppServices;
         public EntradaController(
-            IMercadoriaAppServices mercadoriaAppServices
+            IEntradaAppServices entradaAppServices
         )
         {
-            _mercadoriaAppServices = mercadoriaAppServices;
+            _entradaAppServices = entradaAppServices;
         }
 
         [HttpGet("obter-todas-entradas")]
         public async Task<IActionResult> ObterTodasEntradas()
         {
-            return Ok(await _mercadoriaAppServices.ObterTodasEntradas());
+            return Ok(await _entradaAppServices.ObterTodasEntradas());
         }
 
         [HttpPost("inserir-entrada")]
@@ -30,7 +29,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             if (entrada == null)
                 return BadRequest();
 
-            await _mercadoriaAppServices.InserirEntrada(entrada);
+            await _entradaAppServices.InserirEntrada(entrada);
 
             return Created("Created", true);
         }

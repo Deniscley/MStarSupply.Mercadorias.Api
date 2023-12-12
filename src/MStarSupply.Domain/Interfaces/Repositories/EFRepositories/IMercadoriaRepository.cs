@@ -12,10 +12,6 @@ namespace MStarSupply.Domain.Interfaces.Repositories
     {
         void InserirMercadoria(Mercadoria mercadoria);
 
-        void InserirEntrada(Entrada entrada);
-
-        void InserirSaida(Saida saida);
-
         Task<IEnumerable<MercadoriaResponse>> ObterTodasMercadorias();
     }
 }

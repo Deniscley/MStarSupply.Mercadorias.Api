@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace MStarSupply.Domain.Interfaces.Services
 {
-    public interface IMercadoriaAppServices
+    public interface IEntradaAppServices
     {
-        Task InserirMercadoria(Mercadoria mercadoria);
+        Task InserirEntrada(Entrada entrada);
 
-        Task<IEnumerable<MercadoriaResponse>> ObterTodasMercadorias();
+        Task<IEnumerable<EntradaResponse>> ObterTodasEntradas();
     }
 }

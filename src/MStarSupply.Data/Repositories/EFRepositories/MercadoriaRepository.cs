@@ -28,18 +28,6 @@ namespace MStarSupply.Data.Repositories
             _context.SaveChanges();
         }
 
-        public void InserirEntrada(Entrada entrada)
-        {
-            _context.Entradas.Add(entrada);
-            _context.SaveChanges();
-        }
-
-        public void InserirSaida(Saida saida)
-        {
-            _context.Saidas.Add(saida);
-            _context.SaveChanges();
-        }
-
         public async Task<IEnumerable<MercadoriaResponse>> ObterTodasMercadorias()
         {
             var response = (await _context.Mercadorias.AsNoTracking().ToListAsync()).AsEnumerable();
