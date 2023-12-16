@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MStarSupply.Data.Context;
+using MStarSupply.Domain.DTOs.RequestDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories.EFRepositories;
 using System;
@@ -22,9 +23,10 @@ namespace MStarSupply.Data.Repositories.EFRepositories
         }
 
 
-        public void InserirEntrada(Entrada entrada)
+        public void InserirEntrada(EntradaRequest entrada)
         {
-            _context.Entradas.Add(entrada);
+            var entradaResponse = _mapper.Map<Entrada>(entrada);
+            _context.Entradas.Add(entradaResponse);
             _context.SaveChanges();
         }
     }

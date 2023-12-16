@@ -1,4 +1,5 @@
-﻿using MStarSupply.Domain.Entities;
+﻿using MStarSupply.Domain.DTOs.RequestDtos;
+using MStarSupply.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace MStarSupply.Domain.Interfaces.Repositories.EFRepositories
 {
     public interface ISaidaRepository
     {
-        void InserirSaida(Saida saida);
+        void InserirSaida(SaidaRequest saida);
     }
 }

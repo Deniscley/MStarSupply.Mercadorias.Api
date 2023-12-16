@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Interfaces.Repositories.EFRepositories;
+using MStarSupply.Domain.DTOs.RequestDtos;
 
 namespace MStarSupply.Application.Services
 {
@@ -22,7 +23,7 @@ namespace MStarSupply.Application.Services
             _entradaQueriesRepository = entradaQueriesRepository;
         }
 
-        public Task InserirEntrada(Entrada entrada)
+        public Task InserirEntrada(EntradaRequest entrada)
         {
             _entradaRepository.InserirEntrada(entrada);
             return Task.CompletedTask;

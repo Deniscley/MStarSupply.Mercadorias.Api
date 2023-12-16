@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Interfaces.Repositories.EFRepositories;
+using MStarSupply.Domain.DTOs.RequestDtos;
 
 namespace MStarSupply.Application.Services
 {
@@ -22,7 +23,7 @@ namespace MStarSupply.Application.Services
             _saidaQueriesRepository = saidaQueriesRepository;
         }
 
-        public Task InserirSaida(Saida saida)
+        public Task InserirSaida(SaidaRequest saida)
         {
             _saidaRepository.InserirSaida(saida);
             return Task.CompletedTask;

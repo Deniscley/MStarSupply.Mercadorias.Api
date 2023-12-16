@@ -1,4 +1,5 @@
-﻿using MStarSupply.Domain.DTOs.ResponseDtos;
+﻿using MStarSupply.Domain.DTOs.RequestDtos;
+using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace MStarSupply.Domain.Interfaces.Services
 {
     public interface IMercadoriaAppServices
     {
-        Task InserirMercadoria(Mercadoria mercadoria);
+        Task InserirMercadoria(MercadoriaRequest mercadoria);
 
         Task<IEnumerable<MercadoriaResponse>> ObterTodasMercadorias();
     }

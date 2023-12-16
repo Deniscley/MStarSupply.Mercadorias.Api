@@ -8,14 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MStarSupply.Data.Mappings
+namespace MStarSupply.Data.MappingsProfile
 {
-    public class MercadoriaMappingProfile : Profile
+    public class EntradaMappingProfile : Profile
     {
-        public MercadoriaMappingProfile()
+        public EntradaMappingProfile() 
         {
-            CreateMap<Mercadoria, MercadoriaResponse>();
-            CreateMap<MercadoriaRequest, Mercadoria>();
+            CreateMap<EntradaRequest, Entrada>();
         }
     }
 }

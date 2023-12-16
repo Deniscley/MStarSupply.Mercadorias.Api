@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Azure;
 using Microsoft.EntityFrameworkCore;
 using MStarSupply.Data.Context;
+using MStarSupply.Domain.DTOs.RequestDtos;
 using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories;
@@ -22,9 +24,10 @@ namespace MStarSupply.Data.Repositories
             _context = context;
             _mapper = mapper;
         }
-        public void InserirMercadoria(Mercadoria mercadoria)
+        public void InserirMercadoria(MercadoriaRequest mercadoria)
         {
-            _context.Mercadorias.Add(mercadoria);
+            var mercadoriaResponse = _mapper.Map<Mercadoria>(mercadoria);
+            _context.Mercadorias.Add(mercadoriaResponse);
             _context.SaveChanges();
         }
 

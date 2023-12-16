@@ -14,12 +14,12 @@ namespace MStarSupply.Domain.Entities
     {
         [Key]
         public Guid Id { get; private set; }
-        public int Quantidade { get; set; }
-        public DateTime Data { get; set; }
-        public string Local {  get; set; }
+        public int Quantidade { get; private set; }
+        public DateTime Data { get; private set; }
+        public string Local {  get; private set; }
 
         [ForeignKey("MercadoriaId")]
-        public Guid MercadoriaId { get; set; }
+        public Guid MercadoriaId { get; private set; }
 
         public Entrada() { }
 

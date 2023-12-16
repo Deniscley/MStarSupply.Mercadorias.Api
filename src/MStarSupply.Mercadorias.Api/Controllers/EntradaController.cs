@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MStarSupply.Domain.DTOs.RequestDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories;
 using MStarSupply.Domain.Interfaces.Services;
@@ -24,7 +25,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
         }
 
         [HttpPost("inserir-entrada")]
-        public async Task<IActionResult> InserirEntrada(Entrada entrada)
+        public async Task<IActionResult> InserirEntrada(EntradaRequest entrada)
         {
             if (entrada == null)
                 return BadRequest();

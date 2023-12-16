@@ -1,4 +1,5 @@
-﻿using MStarSupply.Domain.DTOs.ResponseDtos;
+﻿using MStarSupply.Domain.DTOs.RequestDtos;
+using MStarSupply.Domain.DTOs.ResponseDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories;
 using MStarSupply.Domain.Interfaces.Repositories.DapperRepositories;
@@ -21,7 +22,7 @@ namespace MStarSupply.Application.Services
             _mercadoriaQueriesRepository = mercadoriaQueriesRepository;
         }
 
-        public Task InserirMercadoria(Mercadoria mercadoria)
+        public Task InserirMercadoria(MercadoriaRequest mercadoria)
         {
             _mercadoriaRepository.InserirMercadoria(mercadoria);
             return Task.CompletedTask;

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MStarSupply.Data.Context;
+using MStarSupply.Domain.DTOs.RequestDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories.EFRepositories;
 using System;
@@ -22,9 +23,10 @@ namespace MStarSupply.Data.Repositories.EFRepositories
         }
 
 
-        public void InserirSaida(Saida saida)
+        public void InserirSaida(SaidaRequest saida)
         {
-            _context.Saidas.Add(saida);
+            var saidaResponse = _mapper.Map<Saida>(saida);
+            _context.Saidas.Add(saidaResponse);
             _context.SaveChanges();
         }
     }

@@ -13,13 +13,13 @@ namespace MStarSupply.Domain.Entities
     {
         [Key]
         public Guid Id { get; private set; }
-        public int NumeroRegistro { get; set; }
-        public string Nome { get; set; }
-        public string Fabricante { get; set; }
+        public int NumeroRegistro { get; private set; }
+        public string Nome { get; private set; }
+        public string Fabricante { get; private set; }
 
-        public string Tipo { get; set; }
+        public string Tipo { get; private set; }
 
-        public string Descricao { get; set; }
+        public string Descricao { get; private set; }
 
         public Mercadoria() { }
 
