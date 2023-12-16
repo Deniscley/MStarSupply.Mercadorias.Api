@@ -35,7 +35,9 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                                 Mercadorias.NumeroRegistro as NumeroRegistro
                                FROM Entradas
                                INNER JOIN Mercadorias 
-                               ON Entradas.MercadoriaId = Mercadorias.Id";
+                               ON Entradas.MercadoriaId = Mercadorias.Id
+                               WHERE MONTH(Entradas.Data) = MONTH(GETDATE())
+                               AND YEAR(Entradas.Data) = YEAR(GETDATE())";
   
 
                 using SqlConnection connection = new SqlConnection(ConnectionString);
