@@ -22,10 +22,13 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
             ConnectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas()
+        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas(int pagina)
         {
             try
             {
+                int itensPorPagina = 10;
+                int paginaAtual = pagina;
+
                 string sql = @"SELECT 
                                 Entradas.Id as Id,
                                 Entradas.Local as Local,
@@ -37,12 +40,15 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                                INNER JOIN Mercadorias 
                                ON Entradas.MercadoriaId = Mercadorias.Id
                                WHERE MONTH(Entradas.Data) = MONTH(GETDATE())
-                               AND YEAR(Entradas.Data) = YEAR(GETDATE())";
-  
+                               AND YEAR(Entradas.Data) = YEAR(GETDATE())
+                               ORDER BY Entradas.Data
+                               OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
+
+                var parametros = new { Offset = (paginaAtual - 1) * itensPorPagina, PageSize = itensPorPagina };
 
                 using SqlConnection connection = new SqlConnection(ConnectionString);
                 connection.Open();
-                var resultado =  await connection.QueryAsync<EntradaResponse>(sql);
+                var resultado =  await connection.QueryAsync<EntradaResponse>(sql, parametros);
 
                 return resultado;
             }

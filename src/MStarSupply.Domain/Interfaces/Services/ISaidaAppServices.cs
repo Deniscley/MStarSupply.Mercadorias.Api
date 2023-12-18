@@ -12,6 +12,6 @@ namespace MStarSupply.Domain.Interfaces.Services
     public interface ISaidaAppServices
     {
         Task InserirSaida(SaidaRequest saida);
-        Task<IEnumerable<SaidaResponse>> ObterTodasSaidas();
+        Task<IEnumerable<SaidaResponse>> ObterTodasSaidas(int pagina);
     }
 }

@@ -19,9 +19,9 @@ namespace MStarSupply.Mercadorias.Api.Controllers
         }
 
         [HttpGet("obter-todas-entradas")]
-        public async Task<IActionResult> ObterTodasEntradas()
+        public async Task<IActionResult> ObterTodasEntradas([FromQuery] int pagina)
         {
-            return Ok(await _entradaAppServices.ObterTodasEntradas());
+            return Ok(await _entradaAppServices.ObterTodasEntradas(pagina));
         }
 
         [HttpPost("inserir-entrada")]

@@ -21,10 +21,13 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
         }
 
 
-        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas()
+        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas(int pagina)
         {
             try
             {
+                int itensPorPagina = 10;
+                int paginaAtual = pagina;
+
                 string sql = @"SELECT 
                                 Saidas.Id as Id,
                                 Saidas.Local as Local,
@@ -36,12 +39,15 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                                INNER JOIN Mercadorias 
                                ON Saidas.MercadoriaId = Mercadorias.Id
                                WHERE MONTH(Saidas.Data) = MONTH(GETDATE())
-                               AND YEAR(Saidas.Data) = YEAR(GETDATE())";
+                               AND YEAR(Saidas.Data) = YEAR(GETDATE())
+                               ORDER BY Saidas.Data
+                               OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY";
 
+                var parametros = new { Offset = (paginaAtual - 1) * itensPorPagina, PageSize = itensPorPagina };
 
                 using SqlConnection connection = new SqlConnection(ConnectionString);
                 connection.Open();
-                var resultado = await connection.QueryAsync<SaidaResponse>(sql);
+                var resultado = await connection.QueryAsync<SaidaResponse>(sql, parametros);
 
                 return resultado;
             }

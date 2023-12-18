@@ -30,9 +30,9 @@ namespace MStarSupply.Application.Services
         }
 
 
-        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas()
+        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas(int pagina)
         {
-            var response = await _entradaQueriesRepository.ObterTodasEntradas();
+            var response = await _entradaQueriesRepository.ObterTodasEntradas(pagina);
 
             return response;
         }

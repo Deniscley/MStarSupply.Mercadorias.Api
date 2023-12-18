@@ -19,9 +19,9 @@ namespace MStarSupply.Mercadorias.Api.Controllers
         }
 
         [HttpGet("obter-todas-saidas")]
-        public async Task<IActionResult> ObterTodasSaidas()
+        public async Task<IActionResult> ObterTodasSaidas([FromQuery] int pagina)
         {
-            return Ok(await _saidaAppServices.ObterTodasSaidas());
+            return Ok(await _saidaAppServices.ObterTodasSaidas(pagina));
         }
 
         [HttpPost("inserir-saida")]

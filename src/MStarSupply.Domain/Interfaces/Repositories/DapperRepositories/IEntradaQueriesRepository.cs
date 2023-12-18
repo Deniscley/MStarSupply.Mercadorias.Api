@@ -9,6 +9,6 @@ namespace MStarSupply.Domain.Interfaces.Repositories.DapperRepositories
 {
     public interface IEntradaQueriesRepository
     {
-        Task<IEnumerable<EntradaResponse>> ObterTodasEntradas();
+        Task<IEnumerable<EntradaResponse>> ObterTodasEntradas(int pagina);
     }
 }

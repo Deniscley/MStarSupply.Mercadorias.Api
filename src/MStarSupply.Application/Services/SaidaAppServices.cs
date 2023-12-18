@@ -29,9 +29,9 @@ namespace MStarSupply.Application.Services
             return Task.CompletedTask;
         }
 
-        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas()
+        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas(int pagina)
         {
-            var response = await _saidaQueriesRepository.ObterTodasSaidas();
+            var response = await _saidaQueriesRepository.ObterTodasSaidas(pagina);
 
             return response;
         }
