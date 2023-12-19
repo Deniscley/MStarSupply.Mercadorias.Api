@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MStarSupply.Application.Services;
 using MStarSupply.Domain.DTOs.RequestDtos;
 using MStarSupply.Domain.Entities;
 using MStarSupply.Domain.Interfaces.Repositories;
@@ -18,10 +19,16 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             _saidaAppServices = saidaAppServices;
         }
 
-        [HttpGet("obter-todas-saidas")]
-        public async Task<IActionResult> ObterTodasSaidas([FromQuery] int pagina)
+        [HttpGet("obter-itens-pagina")]
+        public async Task<IActionResult> obterItensDaPagina([FromQuery] int pagina)
         {
-            return Ok(await _saidaAppServices.ObterTodasSaidas(pagina));
+            return Ok(await _saidaAppServices.obterItensDaPagina(pagina));
+        }
+
+        [HttpGet("obter-todos-itens-pagina")]
+        public async Task<IActionResult> obterTodosItensDaPagina()
+        {
+            return Ok(await _saidaAppServices.obterTodosItensDaPagina());
         }
 
         [HttpPost("inserir-saida")]

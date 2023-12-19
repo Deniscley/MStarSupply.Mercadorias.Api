@@ -14,9 +14,7 @@ namespace MStarSupply.Domain.DTOs.ResponseDtos
         public int Quantidade { get; set; }
         public DateTime Data { get; set; }
         public string Local { get; set; }
-
         public int NumeroRegistro { get; set; }
-
         public Guid MercadoriaId { get; set; }
     }
 }

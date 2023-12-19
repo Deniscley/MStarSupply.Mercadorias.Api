@@ -21,7 +21,7 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
         }
 
 
-        public async Task<IEnumerable<SaidaResponse>> ObterTodasSaidas(int pagina)
+        public async Task<IEnumerable<SaidaResponse>> obterItensDaPagina(int pagina)
         {
             try
             {
@@ -29,12 +29,12 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                 int paginaAtual = pagina;
 
                 string sql = @"SELECT 
-                                Saidas.Id as Id,
-                                Saidas.Local as Local,
-                                Saidas.Data as Data,
-                                Saidas.Quantidade as Quantidade,
-                                Saidas.MercadoriaId as MercadoriaId,
-                                Mercadorias.NumeroRegistro as NumeroRegistro
+                                Saidas.Id AS Id,
+                                Saidas.Local AS Local,
+                                Saidas.Data AS Data,
+                                Saidas.Quantidade AS Quantidade,
+                                Saidas.MercadoriaId AS MercadoriaId,
+                                Mercadorias.NumeroRegistro AS NumeroRegistro
                                FROM Saidas
                                INNER JOIN Mercadorias 
                                ON Saidas.MercadoriaId = Mercadorias.Id
@@ -48,6 +48,37 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                 using SqlConnection connection = new SqlConnection(ConnectionString);
                 connection.Open();
                 var resultado = await connection.QueryAsync<SaidaResponse>(sql, parametros);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao realizar a consulta" + ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<SaidaTotalItensResponse>> obterTodosItensDaPagina()
+        {
+            try
+            {
+                string sql = @"SELECT 
+                                Saidas.Id AS Id,
+                                Saidas.Local AS Local,
+                                Saidas.Data AS Data,
+                                Saidas.Quantidade AS Quantidade,
+                                (SELECT SUM(Saidas.Quantidade) 
+                                    FROM Saidas WHERE MONTH(Saidas.Data) = MONTH(GETDATE()) 
+                                    AND YEAR(Saidas.Data) = YEAR(GETDATE())) AS Quantidade_Total,
+                                Saidas.MercadoriaId AS MercadoriaId,
+                                Mercadorias.NumeroRegistro AS NumeroRegistro
+                               FROM Saidas
+                               INNER JOIN Mercadorias 
+                               ON Saidas.MercadoriaId = Mercadorias.Id
+                               ORDER BY Saidas.Data";
+
+                using SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                var resultado = await connection.QueryAsync<SaidaTotalItensResponse>(sql);
 
                 return resultado;
             }

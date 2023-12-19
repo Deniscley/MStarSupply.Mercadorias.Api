@@ -22,7 +22,7 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
             ConnectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        public async Task<IEnumerable<EntradaResponse>> ObterTodasEntradas(int pagina)
+        public async Task<IEnumerable<EntradaResponse>> obterItensDaPagina(int pagina)
         {
             try
             {
@@ -30,12 +30,12 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                 int paginaAtual = pagina;
 
                 string sql = @"SELECT 
-                                Entradas.Id as Id,
-                                Entradas.Local as Local,
-                                Entradas.Data as Data,
-                                Entradas.Quantidade as Quantidade,
-                                Entradas.MercadoriaId as MercadoriaId,
-                                Mercadorias.NumeroRegistro as NumeroRegistro
+                                Entradas.Id AS Id,
+                                Entradas.Local AS Local,
+                                Entradas.Data AS Data,
+                                Entradas.Quantidade AS Quantidade,
+                                Entradas.MercadoriaId AS MercadoriaId,
+                                Mercadorias.NumeroRegistro AS NumeroRegistro
                                FROM Entradas
                                INNER JOIN Mercadorias 
                                ON Entradas.MercadoriaId = Mercadorias.Id
@@ -49,6 +49,37 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                 using SqlConnection connection = new SqlConnection(ConnectionString);
                 connection.Open();
                 var resultado =  await connection.QueryAsync<EntradaResponse>(sql, parametros);
+
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro ao realizar a consulta" + ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<EntradaTotalItensResponse>> obterTodosItensDaPagina()
+        {
+            try
+            {
+                string sql = @"SELECT 
+                                Entradas.Id AS Id,
+                                Entradas.Local AS Local,
+                                Entradas.Data AS Data,
+                                Entradas.Quantidade AS Quantidade,
+                                (SELECT SUM(Entradas.Quantidade) 
+                                    FROM Entradas WHERE MONTH(Entradas.Data) = MONTH(GETDATE()) 
+                                    AND YEAR(Entradas.Data) = YEAR(GETDATE())) AS Quantidade_Total,
+                                Entradas.MercadoriaId AS MercadoriaId,
+                                Mercadorias.NumeroRegistro AS NumeroRegistro
+                               FROM Entradas
+                               INNER JOIN Mercadorias 
+                               ON Entradas.MercadoriaId = Mercadorias.Id
+                               ORDER BY Entradas.Data";
+
+                using SqlConnection connection = new SqlConnection(ConnectionString);
+                connection.Open();
+                var resultado = await connection.QueryAsync<EntradaTotalItensResponse>(sql);
 
                 return resultado;
             }

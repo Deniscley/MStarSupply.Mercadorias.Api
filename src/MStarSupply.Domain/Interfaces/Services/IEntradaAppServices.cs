@@ -13,6 +13,8 @@ namespace MStarSupply.Domain.Interfaces.Services
     {
         Task InserirEntrada(EntradaRequest entrada);
 
-        Task<IEnumerable<EntradaResponse>> ObterTodasEntradas(int pagina);
+        Task<IEnumerable<EntradaResponse>> obterItensDaPagina(int pagina);
+
+        Task<IEnumerable<EntradaTotalItensResponse>> obterTodosItensDaPagina();
     }
 }

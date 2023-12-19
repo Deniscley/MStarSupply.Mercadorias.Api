@@ -18,10 +18,16 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             _entradaAppServices = entradaAppServices;
         }
 
-        [HttpGet("obter-todas-entradas")]
-        public async Task<IActionResult> ObterTodasEntradas([FromQuery] int pagina)
+        [HttpGet("obter-itens-pagina")]
+        public async Task<IActionResult> obterItensDaPagina([FromQuery] int pagina)
         {
-            return Ok(await _entradaAppServices.ObterTodasEntradas(pagina));
+            return Ok(await _entradaAppServices.obterItensDaPagina(pagina));
+        }
+
+        [HttpGet("obter-todos-itens-pagina")]
+        public async Task<IActionResult> obterTodosItensDaPagina()
+        {
+            return Ok(await _entradaAppServices.obterTodosItensDaPagina());
         }
 
         [HttpPost("inserir-entrada")]
