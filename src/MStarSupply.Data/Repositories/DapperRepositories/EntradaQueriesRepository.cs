@@ -75,6 +75,8 @@ namespace MStarSupply.Data.Repositories.DapperRepositories
                                FROM Entradas
                                INNER JOIN Mercadorias 
                                ON Entradas.MercadoriaId = Mercadorias.Id
+                               WHERE MONTH(Entradas.Data) = MONTH(GETDATE())
+                               AND YEAR(Entradas.Data) = YEAR(GETDATE())
                                ORDER BY Entradas.Data";
 
                 using SqlConnection connection = new SqlConnection(ConnectionString);
