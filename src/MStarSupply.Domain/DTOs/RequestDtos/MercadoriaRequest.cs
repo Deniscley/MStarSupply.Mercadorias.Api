@@ -8,7 +8,6 @@ namespace MStarSupply.Domain.DTOs.RequestDtos
 {
     public class MercadoriaRequest
     {
-        public Guid Id { get; private set; }
         public int NumeroRegistro { get; set; }
         public string Nome { get; set; }
         public string Fabricante { get; set; }

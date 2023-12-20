@@ -9,7 +9,6 @@ namespace MStarSupply.Domain.DTOs.RequestDtos
 {
     public class EntradaRequest
     {
-        public Guid Id { get; private set; }
         public int Quantidade { get; set; }
         public DateTime Data { get; set; }
         public string Local { get; set; }
