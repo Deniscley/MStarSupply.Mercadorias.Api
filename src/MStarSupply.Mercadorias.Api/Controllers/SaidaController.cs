@@ -11,24 +11,24 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     [ApiController]
     public class SaidaController : Controller
     {
-        private readonly ISaidaAppServices _saidaAppServices;
+        private readonly ISaidaAppService _saidaAppService;
         public SaidaController(
-            ISaidaAppServices saidaAppServices
+            ISaidaAppService saidaAppService
         )
         {
-            _saidaAppServices = saidaAppServices;
+            _saidaAppService = saidaAppService;
         }
 
         [HttpGet("obter-itens-pagina")]
         public async Task<IActionResult> obterItensDaPagina([FromQuery] int pagina)
         {
-            return Ok(await _saidaAppServices.obterItensDaPagina(pagina));
+            return Ok(await _saidaAppService.obterItensDaPagina(pagina));
         }
 
         [HttpGet("obter-todos-itens-pagina")]
         public async Task<IActionResult> obterTodosItensDaPagina()
         {
-            return Ok(await _saidaAppServices.obterTodosItensDaPagina());
+            return Ok(await _saidaAppService.obterTodosItensDaPagina());
         }
 
         [HttpPost("inserir-saida")]
@@ -37,7 +37,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             if (saida == null)
                 return BadRequest();
 
-            await _saidaAppServices.InserirSaida(saida);
+            await _saidaAppService.InserirSaida(saida);
 
             return Created("Created", true);
         }

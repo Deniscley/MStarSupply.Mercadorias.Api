@@ -13,11 +13,11 @@ using MStarSupply.Domain.DTOs.RequestDtos;
 
 namespace MStarSupply.Application.Services
 {
-    public class EntradaAppServices : IEntradaAppServices
+    public class EntradaAppService : IEntradaAppService
     {
         private readonly IEntradaRepository _entradaRepository;
         private readonly IEntradaQueriesRepository _entradaQueriesRepository;
-        public EntradaAppServices(IEntradaRepository entradaRepository, IEntradaQueriesRepository entradaQueriesRepository)
+        public EntradaAppService(IEntradaRepository entradaRepository, IEntradaQueriesRepository entradaQueriesRepository)
         {
             _entradaRepository = entradaRepository;
             _entradaQueriesRepository = entradaQueriesRepository;

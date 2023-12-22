@@ -10,19 +10,19 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     [ApiController]
     public class MercadoriaController : Controller
     {
-        private readonly IMercadoriaAppServices _mercadoriaAppServices;
+        private readonly IMercadoriaAppService _mercadoriaAppService;
         public MercadoriaController(
-            IMercadoriaAppServices mercadoriaAppServices
+            IMercadoriaAppService mercadoriaAppService
         )
         {
-            _mercadoriaAppServices = mercadoriaAppServices;
+            _mercadoriaAppService = mercadoriaAppService;
         }
 
 
         [HttpGet("obter-todas-mercadorias")]
         public async Task<IActionResult> ObterTodasMercadorias()
         {
-            return Ok(await _mercadoriaAppServices.ObterTodasMercadorias());
+            return Ok(await _mercadoriaAppService.ObterTodasMercadorias());
         }
 
         [HttpPost("inserir-mercadoria")]
@@ -31,7 +31,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             if (mercadoria == null)
                 return BadRequest();
 
-            await _mercadoriaAppServices.InserirMercadoria(mercadoria);
+            await _mercadoriaAppService.InserirMercadoria(mercadoria);
 
             return Created("Created", true);
         }

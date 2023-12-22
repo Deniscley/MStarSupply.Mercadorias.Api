@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 
 namespace MStarSupply.Domain.Interfaces.Services
 {
-    public interface IMercadoriaAppServices
+    public interface ISaidaAppService
     {
-        Task InserirMercadoria(MercadoriaRequest mercadoria);
+        Task InserirSaida(SaidaRequest saida);
+        Task<IEnumerable<SaidaResponse>> obterItensDaPagina(int pagina);
 
-        Task<IEnumerable<MercadoriaResponse>> ObterTodasMercadorias();
+        Task<IEnumerable<SaidaTotalItensResponse>> obterTodosItensDaPagina();
     }
 }

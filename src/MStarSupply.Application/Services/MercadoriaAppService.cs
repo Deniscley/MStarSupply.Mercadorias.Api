@@ -12,14 +12,12 @@ using System.Threading.Tasks;
 
 namespace MStarSupply.Application.Services
 {
-    public class MercadoriaAppServices : IMercadoriaAppServices
+    public class MercadoriaAppService : IMercadoriaAppService
     {
         private readonly IMercadoriaRepository _mercadoriaRepository;
-        private readonly IEntradaQueriesRepository _mercadoriaQueriesRepository;
-        public MercadoriaAppServices(IMercadoriaRepository mercadoriaRepository, IEntradaQueriesRepository mercadoriaQueriesRepository)
+        public MercadoriaAppService(IMercadoriaRepository mercadoriaRepository, IEntradaQueriesRepository mercadoriaQueriesRepository)
         {
             _mercadoriaRepository = mercadoriaRepository;
-            _mercadoriaQueriesRepository = mercadoriaQueriesRepository;
         }
 
         public Task InserirMercadoria(MercadoriaRequest mercadoria)

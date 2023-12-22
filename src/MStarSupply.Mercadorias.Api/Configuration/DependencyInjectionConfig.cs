@@ -22,9 +22,9 @@ namespace MStarSupply.Mercadorias.Api.Configuration
             services.AddScoped<ISaidaQueriesRepository, SaidaQueriesRepository>();
 
             //AppServices
-            services.AddScoped<IMercadoriaAppServices, MercadoriaAppServices>();
-            services.AddScoped<IEntradaAppServices, EntradaAppServices>();
-            services.AddScoped<ISaidaAppServices, SaidaAppServices>();
+            services.AddScoped<IMercadoriaAppService, MercadoriaAppService>();
+            services.AddScoped<IEntradaAppService, EntradaAppService>();
+            services.AddScoped<ISaidaAppService, SaidaAppService>();
 
             // Context
             services.AddScoped<DataContext>();

@@ -10,24 +10,24 @@ namespace MStarSupply.Mercadorias.Api.Controllers
     [ApiController]
     public class EntradaController : Controller
     {
-        private readonly IEntradaAppServices _entradaAppServices;
+        private readonly IEntradaAppService _entradaAppService;
         public EntradaController(
-            IEntradaAppServices entradaAppServices
+            IEntradaAppService entradaAppService
         )
         {
-            _entradaAppServices = entradaAppServices;
+            _entradaAppService = entradaAppService;
         }
 
         [HttpGet("obter-itens-pagina")]
         public async Task<IActionResult> obterItensDaPagina([FromQuery] int pagina)
         {
-            return Ok(await _entradaAppServices.obterItensDaPagina(pagina));
+            return Ok(await _entradaAppService.obterItensDaPagina(pagina));
         }
 
         [HttpGet("obter-todos-itens-pagina")]
         public async Task<IActionResult> obterTodosItensDaPagina()
         {
-            return Ok(await _entradaAppServices.obterTodosItensDaPagina());
+            return Ok(await _entradaAppService.obterTodosItensDaPagina());
         }
 
         [HttpPost("inserir-entrada")]
@@ -36,7 +36,7 @@ namespace MStarSupply.Mercadorias.Api.Controllers
             if (entrada == null)
                 return BadRequest();
 
-            await _entradaAppServices.InserirEntrada(entrada);
+            await _entradaAppService.InserirEntrada(entrada);
 
             return Created("Created", true);
         }

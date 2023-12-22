@@ -13,11 +13,11 @@ using MStarSupply.Domain.DTOs.RequestDtos;
 
 namespace MStarSupply.Application.Services
 {
-    public class SaidaAppServices : ISaidaAppServices
+    public class SaidaAppService : ISaidaAppService
     {
         private readonly ISaidaRepository _saidaRepository;
         private readonly ISaidaQueriesRepository _saidaQueriesRepository;
-        public SaidaAppServices(ISaidaRepository saidaRepository, ISaidaQueriesRepository saidaQueriesRepository)
+        public SaidaAppService(ISaidaRepository saidaRepository, ISaidaQueriesRepository saidaQueriesRepository)
         {
             _saidaRepository = saidaRepository;
             _saidaQueriesRepository = saidaQueriesRepository;
